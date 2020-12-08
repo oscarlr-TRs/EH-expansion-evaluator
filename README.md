@@ -4,6 +4,8 @@
 git clone https://github.com/oscarlr/EH-expansion-evaluator
 python classify_expansions.py model/raf_model.sav test/test_set.txt > test/out.txt
 ```
+## Requirements
+1. python/3.6
 ## Input
 There are two inputs. The first input is the model (```model/raf_model.sav```) and the second input is a modified output from Expansion Hunter. The second input must be a tab delimited file with the following columns:
 ```
@@ -28,4 +30,18 @@ There are two inputs. The first input is the model (```model/raf_model.sav```) a
     19	FR_A1/FR_A2
     20	FR_Total
     21	Total Reads
+```
+## Output
+The output is a tab delimited file. It contains 10 columns, the first 9 columsn from input and 10th column with the model's prediction of whether the expansion is true or false:
+```
+     1	chrom
+     2	start
+     3	end
+     4	Loc
+     5	RefUnit
+     6	RefCopy
+     7	Locus
+     8	SampleId
+     9	LongAllele
+    10	T/F_Expansions
 ```
