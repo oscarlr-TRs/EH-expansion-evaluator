@@ -46,4 +46,4 @@ The output is a tab delimited file. It contains 10 columns, the first 9 columsn 
     10	T/F_Expansions
 ```
 ## Model
-The model is a Random Forest classifier with 12 features trained on more than 3,400 manually curated IGV screenshots of read pileups overlapping predicted expansions from Expansion Hunter. 
+The model is a Random Forest classifier with 12 features trained on more than 3,400 manually curated IGV screenshots of read pileups overlapping predicted expansions from Expansion Hunter. The most predictive features are the flanking reads followed by spanning reads and in-repeat reads.
