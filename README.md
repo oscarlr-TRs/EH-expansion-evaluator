@@ -49,6 +49,10 @@ The output is a tab delimited file. It contains 10 columns, the first 9 columsn 
 The model is a Random Forest classifier with 12 features trained on more than 3,400 manually curated IGV screenshots of read pileups overlapping predicted expansions from Expansion Hunter. The most predictive features are the flanking reads followed by spanning reads and in-repeat reads.
 
 ![alt text](https://github.com/oscarlr/EH-expansion-evaluator/blob/main/figs/feat_scores.png?raw=true)
+
+### Acknowledgments
+Credit to Alejandro Martin Trujillo and Scott Gies for manually curating the training data. 
+
 ## Contact
 [Oscar Rodriguez](https://oscarlr.github.io/) (oscar.rodriguez@icahn.mssm.edu)
 [Andrew Sharp](https://icahn.mssm.edu/profiles/andrew-j-sharp) (andrew.sharp@mssm.edu)
