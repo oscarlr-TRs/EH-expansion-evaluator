@@ -32,7 +32,7 @@ There are two inputs. The first input is the model (```model/raf_model.sav```) a
     21	Total Reads
 ```
 ## Output
-The output is a tab delimited file. It contains 10 columns, the first 9 columsn from input and 10th column with the model's prediction of whether the expansion is true or false:
+The output is a tab delimited file. It contains 10 columns, the first 9 columns from the input and 10th column with the model's prediction of whether the expansion is true or false:
 ```
      1	chrom
      2	start
