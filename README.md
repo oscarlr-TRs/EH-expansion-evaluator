@@ -45,3 +45,5 @@ The output is a tab delimited file. It contains 10 columns, the first 9 columsn 
      9	LongAllele
     10	T/F_Expansions
 ```
+## Model
+The model is a Random Forest classifier with 12 features trained on more than 3,400 manually curated IGV screenshots of read pileups overlapping predicted expansions from Expansion Hunter. 
