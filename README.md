@@ -51,7 +51,7 @@ The model is a Random Forest classifier with 12 features trained on more than 3,
 ![alt text](https://github.com/oscarlr/EH-expansion-evaluator/blob/main/figs/feat_scores.png?raw=true)
 
 ### Acknowledgments
-Credit to Alejandro Martin Trujillo for datasets and providing features and Scott Gies for manually curating the training data. 
+Credit to Alejandro Martin Trujillo for datasets, providing features and contribution to concept and Scott Gies for manually curating the training data. 
 
 ## Contact
 [Oscar Rodriguez](https://oscarlr.github.io/) (oscar.rodriguez@icahn.mssm.edu)
