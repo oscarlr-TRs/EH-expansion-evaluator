@@ -6,7 +6,6 @@
 ```
 git clone https://github.com/oscarlr/EH-expansion-evaluator
 cd EH-expansion-evaluator
-python 
 python classify_expansions.py model/raf_model.sav test/test_set.txt > test/out.txt
 ```
 ## Requirements
