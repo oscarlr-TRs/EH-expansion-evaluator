@@ -1,8 +1,12 @@
 # EH-expansion-evaluator
+## Todo
+1. Write code that goes directly from EH to classifier input
+
 ## Quick start
 ```
 git clone https://github.com/oscarlr/EH-expansion-evaluator
 cd EH-expansion-evaluator
+python 
 python classify_expansions.py model/raf_model.sav test/test_set.txt > test/out.txt
 ```
 ## Requirements
