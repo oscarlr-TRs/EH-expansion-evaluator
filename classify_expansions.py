@@ -41,9 +41,11 @@ def read_in_dataset(fn):
                 continue
             if line_number == 0:
                 for header_val in entry_name_vals:
-                    assert header_val in line
+                    if header_val not in line:
+                        sys.exit("%s not in header" % header_val)
                 for header_val in columns:
-                    assert header_val in line
+                    if header_val not in line:
+                        sys.exit("%s not in header" % header_val)
                 header_vals = line
             else:
                 entry = {}
