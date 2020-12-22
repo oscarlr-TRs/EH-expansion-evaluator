@@ -33,13 +33,17 @@ def read_in_dataset(fn):
                "SPR_A1","SPR_A2","SPR_Total","FR_A1","FR_A2",
                "FR_A1/FR_A2","FR_Total","Total Reads"]
     with open(fn,'r') as fh:
-        for line in fh:
+        for line_number,line in enumerate(fh):
+            line = line.rstrip().split('\t')
             if "VALUE" in line:
                 continue
             if "DIV" in line:
                 continue
-            line = line.rstrip().split('\t')
-            if line[0] == "chrom":
+            if line_number == 0:
+                for header_val in entry_name_vals:
+                    assert header_val in line
+                for header_val in columns:
+                    assert header_val in line
                 header_vals = line
             else:
                 entry = {}
