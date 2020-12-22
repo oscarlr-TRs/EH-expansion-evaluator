@@ -35,7 +35,10 @@ def read_in_dataset(fn):
     with open(fn,'r') as fh:
         for line_number,line in enumerate(fh):
             line = line.rstrip().split('\t')
-            if "VALUE" in line:
+            if len(line) == 1:
+                print("Skipping empty line",file=sys.stderr)
+                continue
+            if "VALUE" in line:                
                 continue
             if "DIV" in line:
                 continue
@@ -60,7 +63,7 @@ def read_in_dataset(fn):
                 entry_name = []
                 for entry_name_val in entry_name_vals:
                     entry_name.append(entry[entry_name_val])
-                entry_name = "_".join(entry_name)
+                entry_name = tuple(entry_name)
                 data[entry_name] = {}
                 for column in columns:                    
                     data[entry_name][column] = float(entry[column])
@@ -73,6 +76,6 @@ preds = loaded_model.predict(features)
 header = ["chrom","start","end","Loc","RefUnit","RefCopy","Locus","SampleId","LongAllele","T/F_Expansions"]
 print("\t".join(header))
 for entry,pred in zip(entries,preds):
-    output = entry.split("_")
+    output = list(entry)
     output.append(pred)
     print("\t".join(output))
