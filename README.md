@@ -3,6 +3,7 @@
 ```
 git clone https://github.com/oscarlr/EH-expansion-evaluator
 cd EH-expansion-evaluator
+
 ### Generate Random Forest feature table from Expansion Hunter VCFs
 python ExtractFeatureFromEHvcf.py  \
      --vcf_list test/sample1.vcf test/sample2.vcf test/sample3.vcf \
