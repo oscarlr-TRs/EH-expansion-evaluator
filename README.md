@@ -15,7 +15,8 @@ python classify_expansions.py model/raf_model.sav test/test_set.txt > test/out.t
 ```
 ## Requirements
 1. python/3.6
-## Input : Feature extraction from vcf
+## Feature extraction from vcf (ExtractFeatureFromEHvcf.py)
+### Input
 a. space separated Expansion Hunter generated vcf files
 b. TSV file containing Sample Locus List to test with classifier
      ```
