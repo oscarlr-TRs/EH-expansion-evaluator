@@ -4,7 +4,10 @@
 git clone https://github.com/oscarlr/EH-expansion-evaluator
 cd EH-expansion-evaluator
 ### Generate Random Forest feature table from Expansion Hunter VCFs
-python /hpc/users/jadhab01/scripts/TOPMed/Predictions/ExtractFeatureFromEHvcf.py  --vcf_list sample1.vcf sample2.vcf sample3.vcf --out TestFeatureExtraction --locus_file SampleLociToTest.tsv
+python ExtractFeatureFromEHvcf.py  \
+     --vcf_list test/sample1.vcf test/sample2.vcf test/sample3.vcf \
+     --out test/test_set.txt \
+     --locus_file test/SampleLociToTest.tsv
 
 ### Run classifer on test data
 python classify_expansions.py model/raf_model.sav test/test_set.txt > test/out.txt
