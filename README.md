@@ -23,7 +23,7 @@ b. TSV file containing Sample Locus List to test with classifier
      1	SampleId
      2    LocusId
      ```
-## Output :
+### Output :
 TSV file with following columns
 ```
      1	chrom
@@ -48,8 +48,8 @@ TSV file with following columns
     20	FR_Total
     21	Total Reads
 ```
-
-## Input : Classifer
+## Classifer (classify_expansions.py)
+### Input 
 There are two inputs. The first input is the model (```model/raf_model.sav```) and the second input is a modified output from Expansion Hunter. The second input must be a tab delimited file with the following columns:
 ```
      1	chrom
@@ -74,7 +74,7 @@ There are two inputs. The first input is the model (```model/raf_model.sav```) a
     20	FR_Total
     21	Total Reads
 ```
-## Output
+### Output
 The output is a tab delimited file. It contains 10 columns, the first 9 columns from the input and 10th column with the model's prediction of whether the expansion is true or false:
 ```
      1	chrom
