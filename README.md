@@ -11,7 +11,7 @@ python ExtractFeatureFromEHvcf.py  \
      --locus_file test/SampleLociToTest.tsv
 
 ### Run classifer on test data
-python classify_expansions.py model/raf_model.sav test/test_set.txt > test/out.txt
+python classify_expansions.py model/model.pkl test/test_set.txt > test/out.txt
 ```
 ## Requirements
 1. python/3.6
@@ -50,7 +50,7 @@ TSV file with following columns
 ```
 ## Classifer (classify_expansions.py)
 ### Input 
-There are two inputs. The first input is the model (```model/raf_model.sav```) and the second input is a modified output from Expansion Hunter. The second input must be a tab delimited file with the following columns:
+There are two inputs. The first input is the model (```model/model.pkl```) and the second input is a modified output from Expansion Hunter. The second input must be a tab delimited file with the following columns:
 ```
      1	chrom
      2	start
@@ -89,9 +89,22 @@ The output is a tab delimited file. It contains 10 columns, the first 9 columns 
     10	T/F_Expansions
 ```
 ## Model
-The model is a Random Forest classifier with 12 features trained on more than 3,400 manually curated IGV screenshots of read pileups overlapping _**predicted expansions**_ from Expansion Hunter. The most predictive features are the flanking reads, specifically the flanking ratio between both alleles, followed by spanning reads and in-repeat reads.
+The model is a Random Forest classifier with 12 features trained on more than 1,400 manually curated IGV screenshots of read pileups overlapping _**predicted expansions**_ from Expansion Hunter and on 600 TR expansions predicted to be true based on long-read sequencing data. The most predictive features are the flanking reads, specifically the flanking ratio between both alleles, followed by spanning reads and in-repeat reads.
 
-![alt text](https://github.com/oscarlr/EH-expansion-evaluator/blob/main/figs/feat_scores.png?raw=true)
+```
+FR_A1/FR_A2	0.30
+SPR_A2	0.14
+IRR_A2	0.13
+FR_A2	0.10
+IRR_Total	0.07
+SPR_A1	0.07
+Total Reads	0.05
+FR_Total	0.05
+FR_A1	0.04
+SPR_Total	0.04
+IRR_A1/IRR_A2	0.004
+IRR_A1	0.004
+```
 
 ### Acknowledgments
 Credit to Alejandro Martin Trujillo for datasets, providing features and contribution to concept and Scott Gies for manually curating the training data. 
