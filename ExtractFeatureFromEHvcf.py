@@ -52,7 +52,6 @@ def get_locus(fname):
   
 def parse_vcf(filename):
     # Parse and combine all vcf files
-    
     sample_id = get_sample(filename)
     try:
         with open(filename, 'r') as f:
@@ -66,9 +65,8 @@ def parse_vcf(filename):
     
     except pd.io.common.EmptyDataError:
         sys.exit('ERROR: file {0} was empty.\n'.format(filename))
-        
-    vcf_data=vcf_data.drop(columns=['ID', 'REF','ALT','QUAL','FILTER','FORMAT'])
     
+    vcf_data=vcf_data.drop(columns=['ID', 'REF','ALT','QUAL','FILTER','FORMAT'])
     vcf_data=vcf_data.rename(columns={vcf_data.columns[-1]: 'DATA'})
     vcf_data[['END','REF','RL','RU','VARID','REPID']] = vcf_data.INFO.str.split(";",expand=True) 
     vcf_data[['GT','SO','REPCN','REPCI','ADSP','ADFL','ADIR','LC']] = vcf_data.DATA.str.split(":",expand=True) 
@@ -83,28 +81,25 @@ def parse_vcf(filename):
     vcf_data[['SPR_A1','SPR_A2']]=vcf_data.ADSP.str.split("/",expand=True)
     vcf_data[['FR_A1','FR_A2']]=vcf_data.ADFL.str.split("/",expand=True)
     vcf_data=vcf_data.drop(columns=['REPCN','ADSP','ADIR','ADFL'])
-    
     vcf_data = vcf_data.replace([None], np.nan)
     vcf_data['A1temp'] = vcf_data['A1']
     vcf_data['A2temp'] = vcf_data['A2']
     vcf_data['A2']=vcf_data['A2'].fillna(vcf_data['A1'])    
     vcf_data.loc[(vcf_data['A2temp'].isnull()), 'A1'] = 0 
-    
     vcf_data['A1temp'] = vcf_data['IRR_A1']
     vcf_data['A2temp'] = vcf_data['IRR_A2']
     vcf_data['IRR_A2'] = vcf_data['IRR_A2'].fillna(vcf_data['IRR_A1'])    
     vcf_data.loc[(vcf_data['A2temp'].isnull()), 'IRR_A1'] = 0 
- 
     vcf_data['A1temp'] = vcf_data['SPR_A1']
     vcf_data['A2temp'] = vcf_data['SPR_A2']
     vcf_data['SPR_A2']=vcf_data['SPR_A2'].fillna(vcf_data['SPR_A1'])    
     vcf_data.loc[(vcf_data['A2temp'].isnull()), 'SPR_A1'] = 0 
- 
     vcf_data['A1temp'] = vcf_data['FR_A1']
     vcf_data['A2temp'] = vcf_data['FR_A2']
     vcf_data['FR_A2']=vcf_data['FR_A2'].fillna(vcf_data['FR_A1'])    
     vcf_data.loc[(vcf_data['A2temp'].isnull()), 'FR_A1'] = 0 
-       
+    vcf_data=vcf_data.drop(columns=['A1temp','A2temp'])
+    vcf_data = vcf_data.merge(locus_id[['SampleId','LocusId']])
     vcf_data['A1'] = vcf_data['A1'].astype(int)
     vcf_data['A2'] = vcf_data['A2'].astype(int)
     vcf_data['IRR_A1'] = vcf_data['IRR_A1'].astype(int)
@@ -113,25 +108,17 @@ def parse_vcf(filename):
     vcf_data['SPR_A2'] = vcf_data['SPR_A2'].astype(int)
     vcf_data['FR_A1'] = vcf_data['FR_A1'].astype(int)
     vcf_data['FR_A2'] = vcf_data['FR_A2'].astype(int)
-    
-    vcf_data=vcf_data.drop(columns=['A1temp','A2temp'])
-    
-    vcf_data = vcf_data.merge(locus_id[['SampleId','LocusId']])
     return(vcf_data)
-
 
 def get_features(df):    
     df['LongAllele'] = df[['A1', 'A2']].max(axis=1)  
     df['IRR_Total'] = df['IRR_A1']+ df['IRR_A2']
     df['SPR_Total'] = df['SPR_A1']+ df['SPR_A2']
-    df['FR_Total'] = df['FR_A1']+ df['FR_A2']
-    
+    df['FR_Total'] = df['FR_A1']+ df['FR_A2']    
     df['IRR_Ratio'] = (df['IRR_A1'] / df['IRR_A2']).astype(float)
-    df['FR_Ratio'] = (df['FR_A1'] / df['FR_A2']).astype(float)
-    
+    df['FR_Ratio'] = (df['FR_A1'] / df['FR_A2']).astype(float)    
     df['IRR_Ratio'] = df['IRR_Ratio'].replace(np.nan, 1)
-    df['IRR_Ratio'] = df['IRR_Ratio'].replace(np.inf, 0)
-   
+    df['IRR_Ratio'] = df['IRR_Ratio'].replace(np.inf, 0)   
     df['FR_Ratio'] = df['FR_Ratio'].replace(np.nan, 1)
     df['FR_Ratio'] = df['FR_Ratio'].replace(np.inf, 0)
     df['Total_Reads'] = df['IRR_Total'] + df['SPR_Total'] + df['FR_Total']
@@ -144,10 +131,8 @@ def main():
     base_filename = args.out
     vcf_files = args.vcf_list
     locus_id_file = args.locus_file
-    results_suffix = '.RF_Feature.tsv'
-    
-    sys.stderr.write('Processing {0} samples\n'.format(len(vcf_files)))
-    
+    results_suffix = '.RF_Feature.tsv'    
+    sys.stderr.write('Processing {0} samples\n'.format(len(vcf_files)))    
     # Parse input data
     global locus_id 
     locus_id = get_locus(locus_id_file)
