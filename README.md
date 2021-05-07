@@ -15,13 +15,11 @@ python classify_expansions.py model/model.pkl test/TestFeatureExtraction.RF_Feat
 ```
 ## Requirements
 1. python/3.6
-## Input : Feature extraction from vcf
-a. space separated list of Expansion Hunter generated vcf files
-b. TSV file containing Sample and Locus List to test with classifier
-     ```
-     1	SampleId
-     2    LocusId
-     ```
+
+## Inputs 
+a. VCFs generated from Expansion Hunter
+b. `<prefix>.RF_Feature.tsv` file generated from `ExtractFeatureFromEHvcf.py`
+
 ### Output :
 TSV file with following columns
 ```
