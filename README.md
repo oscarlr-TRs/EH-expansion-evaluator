@@ -18,62 +18,11 @@ python classify_expansions.py model/model.pkl test/TestFeatureExtraction.RF_Feat
 
 ## Inputs 
 1. VCFs generated from Expansion Hunter
-2. `<prefix>.RF_Feature.tsv` file generated from `ExtractFeatureFromEHvcf.py`
-3. `model.pkl` file in model folder
+2. 2-column text file with sample ids and locus. See `test/ExpansionTestList.txt` for an example.
+3. `<prefix>.RF_Feature.tsv` file generated from `ExtractFeatureFromEHvcf.py`
+4. `model.pkl` file in model folder
 
-## Output 
-TSV file with following columns
-```
-     1	chrom
-     2	start
-     3	end
-     4	RefUnit  
-     5	LocusId
-     6	SampleId
-     7    A1
-     8    A2
-     9	IRR_A1
-    10	IRR_A2
-    11	SPR_A1
-    12	SPR_A2
-    13	FR_A1
-    14	FR_A2
-    15    LongAllele
-    16	IRR_Total
-    17	SPR_Total
-    18	FR_Total
-    19	IRR_Ratio    
-    20	FR_Ratio
-    21	Total Reads
-```
-
-## Classifer (classify_expansions.py)
-### Input 
-There are two inputs. The first input is the model (```model/model.pkl```) and the second input is a modified output from Expansion Hunter. The second input must be a tab delimited file with the following columns:
-```
-     1	chrom
-     2	start
-     3	end
-     4	Loc
-     5	RefUnit
-     6	RefCopy
-     7	Locus
-     8	SampleId
-     9	LongAllele
-    10	IRR_A1
-    11	IRR_A2
-    12	IRR_Total
-    13	IRR_A1/IRR_A2
-    14	SPR_A1
-    15	SPR_A2
-    16	SPR_Total
-    17	FR_A1
-    18	FR_A2
-    19	FR_A1/FR_A2
-    20	FR_Total
-    21	Total Reads
-```
-### Output
+## Output
 The output is a tab delimited file. It contains 8 columns, the first 7 columns from the input and 8th column with the model's prediction of whether the expansion is true or false:
 ```
      1	chrom
