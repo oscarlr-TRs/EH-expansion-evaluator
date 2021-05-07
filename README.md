@@ -17,8 +17,8 @@ python classify_expansions.py model/model.pkl test/TestFeatureExtraction.RF_Feat
 1. python/3.6
 
 ## Inputs 
-a. VCFs generated from Expansion Hunter
-b. `<prefix>.RF_Feature.tsv` file generated from `ExtractFeatureFromEHvcf.py`
+1. VCFs generated from Expansion Hunter
+2. `<prefix>.RF_Feature.tsv` file generated from `ExtractFeatureFromEHvcf.py`
 
 ### Output :
 TSV file with following columns
