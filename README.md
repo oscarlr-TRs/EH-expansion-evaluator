@@ -19,8 +19,9 @@ python classify_expansions.py model/model.pkl test/TestFeatureExtraction.RF_Feat
 ## Inputs 
 1. VCFs generated from Expansion Hunter
 2. `<prefix>.RF_Feature.tsv` file generated from `ExtractFeatureFromEHvcf.py`
+3. `model.pkl` file in model folder
 
-### Output :
+## Output 
 TSV file with following columns
 ```
      1	chrom
@@ -45,6 +46,7 @@ TSV file with following columns
     20	FR_Ratio
     21	Total Reads
 ```
+
 ## Classifer (classify_expansions.py)
 ### Input 
 There are two inputs. The first input is the model (```model/model.pkl```) and the second input is a modified output from Expansion Hunter. The second input must be a tab delimited file with the following columns:
