@@ -6,14 +6,14 @@ import numpy
 modelfn = sys.argv[1]
 expansionsfn = sys.argv[2]
 
-columns = ["IRR_A1","IRR_A2","IRR_Total","IRR_A1/IRR_A2",
+columns = ["IRR_A1","IRR_A2","IRR_Total","IRR_Ratio",
            "SPR_A1","SPR_A2","SPR_Total","FR_A1","FR_A2",
-           "FR_A1/FR_A2","FR_Total","Total Reads"]
+           "FR_Ratio","FR_Total","Total_Reads"]
 
 def format_data(data):
-    columns = ["IRR_A1","IRR_A2","IRR_Total","IRR_A1/IRR_A2",
+    columns = ["IRR_A1","IRR_A2","IRR_Total","IRR_Ratio",
                "SPR_A1","SPR_A2","SPR_Total","FR_A1","FR_A2",
-               "FR_A1/FR_A2","FR_Total","Total Reads"]
+               "FR_Ratio","FR_Total","Total_Reads"]
     features = []
     entries = []
     for entry in data:
@@ -28,10 +28,10 @@ def format_data(data):
 def read_in_dataset(fn):
     data = {}
     header_vals = None
-    entry_name_vals = ["chrom","start","end","Loc","RefUnit","RefCopy","Locus","SampleId","LongAllele"]
-    columns = ["IRR_A1","IRR_A2","IRR_Total","IRR_A1/IRR_A2",
+    entry_name_vals = ["chrom","start","end","RefUnit","LocusId","SampleId","LongAllele"]
+    columns = ["IRR_A1","IRR_A2","IRR_Total","IRR_Ratio",
                "SPR_A1","SPR_A2","SPR_Total","FR_A1","FR_A2",
-               "FR_A1/FR_A2","FR_Total","Total Reads"]
+               "FR_Ratio","FR_Total","Total_Reads"]
     with open(fn,'r') as fh:
         for line_number,line in enumerate(fh):
             line = line.rstrip().split('\t')
@@ -73,7 +73,7 @@ data = read_in_dataset(expansionsfn)
 entries,features = format_data(data)
 loaded_model = pickle.load(open(modelfn, 'rb'))
 preds = loaded_model.predict(features)
-header = ["chrom","start","end","Loc","RefUnit","RefCopy","Locus","SampleId","LongAllele","T/F_Expansions"]
+header = ["chrom","start","end","RefUnit","LocusId","SampleId","LongAllele","ExpansionPredictedLabels"]
 print("\t".join(header))
 for entry,pred in zip(entries,preds):
     output = list(entry)
