@@ -18,7 +18,7 @@ python classify_expansions.py model/model.pkl test/TestFeatureExtraction.RF_Feat
 
 ## Inputs 
 1. VCFs generated from Expansion Hunter
-2. 2-column text file with sample ids and locus. See `test/ExpansionTestList.txt` for an example.
+2. 2-column text file ('locus_file') with sample ids and locus. See `test/ExpansionTestList.txt` for an example.
 3. `<prefix>.RF_Feature.tsv` file generated from `ExtractFeatureFromEHvcf.py`
 4. `model.pkl` file in model folder
 
