@@ -8,7 +8,7 @@ cd EH-expansion-evaluator
 python ExtractFeatureFromEHvcf.py  \
        --vcf_list test/HG00123.hg38Catalog.EHv3.2.2.vcf test/HG00125.hg38Catalog.EHv3.2.2.vcf test/HG00129.hg38Catalog.EHv3.2.2.vcf test/HG04212.hg38Catalog.EHv3.2.2.vcf  test/HG04219.hg38Catalog.EHv3.2.2.vcf  test/NA20895.hg38Catalog.EHv3.2.2.vcf test/NA20901.hg38Catalog.EHv3.2.2.vcf test/NA20903.hg38Catalog.EHv3.2.2.vcf test/NA20904.hg38Catalog.EHv3.2.2.vcf test/NA20908.hg38Catalog.EHv3.2.2.vcf test/NA21090.hg38Catalog.EHv3.2.2.vcf \
        --out test/TestFeatureExtraction \
-       --locus_file test/ExpansionTestList.tsv
+       --locus_file test/ExpansionTestList.txt
 
 ### Run classifer on test data using features generated above
 python classify_expansions.py model/raf_model.sav test/TestFeatureExtraction.RF_Feature.tsv > test/Test.RF_Prediction_Output.tsv
