@@ -11,7 +11,7 @@ python ExtractFeatureFromEHvcf.py  \
        --locus_file test/ExpansionTestList.txt
 
 ### Run classifer on test data using features generated above
-python classify_expansions.py model/raf_model.sav test/TestFeatureExtraction.RF_Feature.tsv > test/Test.RF_Prediction_Output.tsv
+python classify_expansions.py model/raf_model.pkl test/TestFeatureExtraction.RF_Feature.tsv > test/Test.RF_Prediction_Output.tsv
 ```
 ## Requirements
 1. python/3.6
