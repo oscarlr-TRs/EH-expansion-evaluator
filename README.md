@@ -15,6 +15,12 @@ python classify_expansions.py model/model.pkl test/TestFeatureExtraction.RF_Feat
 ```
 ## Requirements
 1. python/3.6
+2. python libraries:
+```
+numpy
+pandas
+sklearn
+```
 
 ## Inputs 
 1. VCFs generated from Expansion Hunter
