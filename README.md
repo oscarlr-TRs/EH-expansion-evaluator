@@ -23,10 +23,15 @@ sklearn
 ```
 
 ## Inputs 
+Step1: Generate Random Forest feature table from Expansion Hunter output VCFs
 1. VCFs generated from Expansion Hunter
-2. 2-column text file ('locus_file') with sample ids and locus. See `test/ExpansionTestList.txt` for an example.
-3. `<prefix>.RF_Feature.tsv` file generated from `ExtractFeatureFromEHvcf.py`
-4. `model.pkl` file in model folder
+2. 2-column text file ('locus_file') with SampleId and LocusId. See `test/ExpansionTestList.txt` for an example.
+3. The SampleId column in --locus_file file should be same as SampleId column in vcf file.
+4. optional prefix for output file (RF_Feature.tsv if prefix not specified) 
+
+Step2:Run classifer on test data using features generated above
+1. `<prefix>.RF_Feature.tsv` file generated from `ExtractFeatureFromEHvcf.py`
+2. `model.pkl` file in model folder
 
 ## Output
 The output is a tab delimited file. It contains 8 columns, the first 7 columns from the input and 8th column with the model's prediction of whether the expansion is true or false:
